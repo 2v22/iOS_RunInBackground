@@ -47,8 +47,11 @@
         
         // 进程后台保活,app进入后台音乐播放也不暂停
         AVAudioSession  *session = [AVAudioSession  sharedInstance];
+        // MixWithOthers：不打断 WebView 提示音等其他音频
+        [session setCategory:AVAudioSessionCategoryPlayback
+                 withOptions:AVAudioSessionCategoryOptionMixWithOthers
+                       error:nil];
         [session setActive:YES error:nil];
-        [session setCategory:AVAudioSessionCategoryPlayback error:nil];
     }
     return _player;
 }
